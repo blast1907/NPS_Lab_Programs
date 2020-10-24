@@ -12,9 +12,12 @@ void str_echo(int connfd)
 	int n;
 	int bufsize=1024;
 	char *buffer=(char *)malloc(bufsize);
+	
 	again:
-		while((n=recv(connfd,buffer,bufsize,0))>0)
+		while((n=recv(connfd,buffer,bufsize,0))>0){
 			send(connfd,buffer,n,0);
+			printf("%s\n",buffer);
+		}
 		if(n<0)
 			goto again;
 }
